@@ -1,4 +1,4 @@
-.daterangepicker .ranges li {
+﻿.daterangepicker .ranges li {
   color: #73879C; }
   .daterangepicker .ranges li.active, .daterangepicker .ranges li:hover {
     background: #536A7F;
@@ -3977,3 +3977,8 @@ ul.notifications {
   border: 1px solid #e5e5e5; }
 
 /** /Dropzone.js **/
+
+
+.legendLabel {
+    color: #202020 !important;
+}

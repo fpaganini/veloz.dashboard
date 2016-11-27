@@ -1,0 +1,103 @@
+﻿@helper Create(Veloz.Models.IWidgetContent doughnutpanel)
+{
+var panel = (Veloz.Models.IWidgetSpline)doughnutpanel;
+var canvasid = Guid.NewGuid();
+
+    <div class="x_content">
+        <div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder"></div>
+        <div style="width: 100%;">
+            <div id="@canvasid" class="demo-placeholder" style="width: 100%; height:270px;"></div>
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+
+            $("#@canvasid").length && $.plot($("#@canvasid"), [
+
+                @foreach (var serie in panel.Series)
+                {
+                    @:{
+                                                            if (!string.IsNullOrWhiteSpace(serie.SerieName))
+                    {
+                        @:label: '@serie.SerieName',
+                                                            }
+                    @: data: [
+                                                                                                foreach (var item in serie.Values)
+                        {
+                            if (panel.AxisXTicksType == Ticks.Hour || panel.AxisXTicksType == Ticks.Min)
+                            {
+
+                            }
+                            else
+                            {
+                                @:[gd(@item.date.Year, @item.date.Month, @item.date.Day), @item.Value.ToString().Replace(",",".") ],
+                                                                                                    }
+                        }
+
+                    @:]},
+
+                }
+
+            ], {
+                series: {
+                    lines: {
+                        show: false,
+                        fill: true
+                    },
+                    splines: {
+                        show: true,
+                        tension: 0.4,
+                        lineWidth: 1,
+                        fill: 0.4
+                    },
+                    points: {
+                        radius: 0,
+                        show: true
+                    },
+                    shadowSize: 2
+                },
+                grid: {
+                    verticalLines: true,
+                    hoverable: true,
+                    clickable: true,
+                    tickColor: "#d5d5d5",
+                    borderWidth: 1,
+                    color: '#fff'
+                },
+                colors: [
+                    @foreach (var item in panel.Series)
+                    {
+                        @:"rgba(@item.Color.R, @item.Color.G, @item.Color.B , @((item.Color.A/255.0).ToString().Replace(",",".")))",
+                                }
+                ],
+                xaxis: {
+                    tickColor: "rgba(51, 51, 51, 0.06)",
+                    mode: "time",
+                    tickSize: [
+                        @panel.AxisXTicksValue.ToString()
+                        ,
+                        "@panel.AxisXTicksType.ToString().ToLower()"
+                    ],
+                    //tickLength: 10,
+                    axisLabel: "Date",
+                    axisLabelUseCanvas: true,
+                    axisLabelFontSizePixels: 12,
+                    axisLabelFontFamily: 'Verdana, Arial',
+                    axisLabelPadding: 10
+                },
+                yaxis: {
+                    ticks: @panel.AxisYTicks.ToString(),
+                    tickColor: "rgba(51, 51, 51, 0.06)",
+                },
+                
+                tooltip: true
+            });
+
+            function gd(year, month, day) {
+                return new Date(year, month - 1, day).getTime();
+            }
+        });
+    </script>
+}

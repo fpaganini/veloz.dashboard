@@ -593,6 +593,13 @@
    , youtube_square
 }
 
+public enum Ticks
+{
+    Min,
+    Hour,
+    Day,
+    Month
+}
 
 public enum WidgetWidth
 {
@@ -608,7 +615,8 @@ public enum WidgetContent
     Pie,
     Activities,
     Tasks,
-    Weather
+    Weather,
+    Spline
 }
 
 public enum Colors

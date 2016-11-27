@@ -4360,6 +4360,7 @@
     <Content Include="App_Code\Widgets\Activities.cshtml" />
     <Content Include="App_Code\Widgets\Tasks.cshtml" />
     <Content Include="App_Code\Widgets\Weather.cshtml" />
+    <Content Include="App_Code\Widgets\Chart\Splines.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -4375,6 +4376,7 @@
     </Compile>
     <Compile Include="Models\Base\IWidgetActivity.cs" />
     <Compile Include="Models\Base\IWidgetChart.cs" />
+    <Compile Include="Models\Base\IWidgetSpline.cs" />
     <Compile Include="Models\Base\IWidgetTask.cs" />
     <Compile Include="Models\Base\IWidgetWeather.cs" />
     <Compile Include="Models\Widgets\Activitie.cs" />
@@ -4383,6 +4385,7 @@
     <Compile Include="Models\Widgets\Chart\HorizontalProgressBarChart.cs" />
     <Compile Include="Models\Base\IWidgetContent.cs" />
     <Compile Include="Models\Widgets\Chart\PieChart.cs" />
+    <Compile Include="Models\Widgets\Chart\Spline.cs" />
     <Compile Include="Models\Widgets\Tasks.cs" />
     <Compile Include="Models\Widgets\Tiles.cs" />
     <Compile Include="Models\Widgets\Weather.cs" />

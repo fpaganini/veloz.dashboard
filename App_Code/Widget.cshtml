@@ -94,6 +94,10 @@ else if (widget.Size == WidgetWidth.ThreeColumns)
             {
                 @Widgets.Weather.Create(widget)
             }
+            @if (widget.Style == WidgetContent.Spline)
+            {
+                @Widgets.Chart.Splines.Create(widget)
+            }
 
         </div>
 
