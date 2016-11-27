@@ -1,0 +1,58 @@
+﻿@helper  UserName()
+{
+string user = "Usuário desconectado";
+    @user
+}
+
+@helper UserAvatar()
+{
+    @UserAvatar(false);
+}
+
+@helper UserAvatar(bool circle)
+{
+
+string imagePath = "";
+imagePath = @"..\Content\images\img.png";
+
+if (circle)
+{
+        <img src="@imagePath" class="img-circle profile_img" />
+}
+else
+{
+        <img src="@imagePath" />
+}
+}
+
+
+
+
+
+@helper UserMenu()
+{
+
+}
+
+
+@helper AlertsCount()
+{
+
+}
+
+@helper AlertsList()
+{
+
+}
+
+
+@helper FooterButtons()
+{
+
+}
+
+
+@helper SideMenus()
+{
+
+}

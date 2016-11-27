@@ -1,0 +1,67 @@
+﻿
+@helper Create(Veloz.Models.IWidgetContent activitiepanel)
+{
+var panel = (Veloz.Models.IWidgetActivity)activitiepanel;
+    <div class="x_content">
+        <div class="dashboard-widget-content">
+            <ul class="list-unstyled timeline widget">
+                @foreach (var item in panel.Items)
+                {
+                    <li>
+                        <div class="block">
+                            <div class="block_content">
+                                <h2 class="title">
+                                    @if (string.IsNullOrWhiteSpace(item.ReadMoreFunction))
+                                    {
+                                        <a href="@item.ReadMoreURL">@item.Title</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@item.ReadMoreURL" onclick="@item.ReadMoreFunction">@item.Title</a>
+                                    }
+
+                                </h2>
+                                <div class="byline">
+                                    <span>13 hours ago</span>
+                                    @if (!string.IsNullOrWhiteSpace(@item.UserName))
+                                    {
+                                        @:by<a> @item.UserName </a>
+                                }
+
+
+
+                                </div>
+
+
+                                <p class="excerpt">
+                                    @{
+                                        string text = item.Text;
+                                        if (item.Text.Length > 190)
+                                        {
+                                            text = text.Substring(0, 190) + "...";
+                                        }
+                                    }
+
+                                    @if (string.IsNullOrWhiteSpace(item.ReadMoreFunction))
+                                    {
+                                        @text <a href="@item.ReadMoreURL"> continue lendo</a>
+                                    }
+                                    else
+                                    {
+                                        @text <a href="@item.ReadMoreURL" onclick="@item.ReadMoreFunction"> continue lendo</a>
+                                    }
+
+
+
+
+
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                                        }
+
+            </ul>
+        </div>
+    </div>
+}

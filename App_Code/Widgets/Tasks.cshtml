@@ -1,0 +1,30 @@
+﻿
+@helper Create(Veloz.Models.IWidgetContent taskpanel)
+{
+var panel = (Veloz.Models.IWidgetTask)taskpanel;
+    <div class="x_content">
+        <div class="">
+            <ul class="to_do">
+                @foreach (var item in panel.Items)
+                {
+                    <li>
+                        <p>
+                            @if (item.Completed)
+                            {
+                                <input type="checkbox" class="flat" checked="checked"> @item.TaskName
+                            }
+                            else
+                            {
+                                <input type="checkbox" class="flat"> @item.TaskName
+                            }
+
+
+                        </p>
+                    </li>
+                }
+
+
+            </ul>
+        </div>
+    </div>
+}

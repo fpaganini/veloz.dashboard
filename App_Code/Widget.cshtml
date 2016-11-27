@@ -1,0 +1,102 @@
+﻿@helper Create(Veloz.Models.IWidgetContent widget)
+{
+string size = "12";
+
+if (widget.Size == WidgetWidth.OneColumn)
+{
+    size = "4";
+}
+else if (widget.Size == WidgetWidth.TwoColumns)
+{
+    size = "8";
+}
+else if (widget.Size == WidgetWidth.ThreeColumns)
+{
+    size = "12";
+}
+
+    <div class="col-md-@size col-sm-@size col-xs-12">
+        @{
+            string classTile = "";
+            string classFixed = "";
+            if (widget.FixedHeight)
+            {
+                classTile = "tile";
+                classFixed = "fixed_height_320";
+            }
+        }
+        <div class="x_panel @classTile @classFixed">
+            <div class="x_title">
+                <h2>@widget.Title</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    @if (widget.Colapsable)
+                    {
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    }
+                    @if (widget.Tools != null && widget.Tools.Count > 0)
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                @foreach (var tool in widget.Tools)
+                                {
+                                    <li>
+                                        @if (string.IsNullOrWhiteSpace(tool.Function))
+                                        {
+                                            <a href="@tool.URL">@tool.Name</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@tool.URL" onclick="@tool.Function">@tool.Name</a>
+                                        }
+                                    </li>
+                                }
+
+                            </ul>
+                        </li>
+                    }
+                    @if (widget.Closable)
+                    {
+                        <li>
+                            <a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    }
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+
+
+
+
+            @if (widget.Style == WidgetContent.HorizontalProgressBars)
+            {
+                @Widgets.Chart.HorizontalProgressBar.Create(widget)
+            }
+            @if (widget.Style == WidgetContent.Doughnut)
+            {
+                @Widgets.Chart.Doughnut.Create(widget)
+            }
+            @if (widget.Style == WidgetContent.Pie)
+            {
+                @Widgets.Chart.Pie.Create(widget)
+            }
+            @if (widget.Style == WidgetContent.Activities)
+            {
+                @Widgets.Activities.Create(widget)
+            }
+            @if (widget.Style == WidgetContent.Tasks)
+            {
+                @Widgets.Tasks.Create(widget)
+            }
+            @if (widget.Style == WidgetContent.Weather)
+            {
+                @Widgets.Weather.Create(widget)
+            }
+
+        </div>
+
+    </div>
+}
+

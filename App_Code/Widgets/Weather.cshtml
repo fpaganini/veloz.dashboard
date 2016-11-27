@@ -1,0 +1,298 @@
+﻿@helper Create(Veloz.Models.IWidgetContent weatherpanel)
+{
+var panel = ((Veloz.Models.IWidgetWeather)weatherpanel);
+
+var timeid = Guid.NewGuid().ToString();
+var day1 = Guid.NewGuid().ToString();
+var day2 = Guid.NewGuid().ToString();
+var day3 = Guid.NewGuid().ToString();
+var day4 = Guid.NewGuid().ToString();
+var day5 = Guid.NewGuid().ToString();
+var day6 = Guid.NewGuid().ToString();
+var day7 = Guid.NewGuid().ToString();
+
+
+var day1Sumary = Guid.NewGuid().ToString();
+
+
+var day1Degrees = Guid.NewGuid().ToString();
+var day2Degrees = Guid.NewGuid().ToString();
+var day3Degrees = Guid.NewGuid().ToString();
+var day4Degrees = Guid.NewGuid().ToString();
+var day5Degrees = Guid.NewGuid().ToString();
+var day6Degrees = Guid.NewGuid().ToString();
+var day7Degrees = Guid.NewGuid().ToString();
+
+
+var day1Wind = Guid.NewGuid().ToString();
+var day2Wind = Guid.NewGuid().ToString();
+var day3Wind = Guid.NewGuid().ToString();
+var day4Wind = Guid.NewGuid().ToString();
+var day5Wind = Guid.NewGuid().ToString();
+var day6Wind = Guid.NewGuid().ToString();
+var day7Wind = Guid.NewGuid().ToString();
+
+
+var day2name = "";
+var day3name = "";
+var day4name = "";
+var day5name = "";
+var day6name = "";
+var day7name = "";
+
+    <div class="x_content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="temperature">
+                    @if (DateTime.Today.DayOfWeek == DayOfWeek.Sunday)
+                    {
+                        @:<b>Domingo</b>, <span id="@timeid">@DateTime.Now.ToString("HH:mm")</span>
+                        day2name = "Dom";
+                        day3name = "Seg";
+                        day4name = "Ter";
+                        day5name = "Qua";
+                        day6name = "Qui";
+                        day7name = "Sex";
+                    }
+                    else if (DateTime.Today.DayOfWeek == DayOfWeek.Monday)
+                    {
+                        @:<b>Segunda</b>, <span id="@timeid">@DateTime.Now.ToString("HH:mm")</span>
+                        day7name = "Sab";
+                        day2name = "Seg";
+                        day3name = "Ter";
+                        day4name = "Qua";
+                        day5name = "Qui";
+                        day6name = "Sex";
+                    }
+                    else if (DateTime.Today.DayOfWeek == DayOfWeek.Tuesday)
+                    {
+                        @:<b>Terça</b>, <span id="@timeid">@DateTime.Now.ToString("HH:mm")</span>
+                        day6name = "Sab";
+                        day7name = "Dom";
+                        day2name = "Ter";
+                        day3name = "Qua";
+                        day4name = "Qui";
+                        day5name = "Sex";
+                    }
+                    else if (DateTime.Today.DayOfWeek == DayOfWeek.Wednesday)
+                    {
+                        @:<b>Quarta</b>, <span id="@timeid">@DateTime.Now.ToString("HH:mm")</span>
+                        day5name = "Sab";
+                        day6name = "Dom";
+                        day7name = "Seg";
+                        day2name = "Qua";
+                        day3name = "Qui";
+                        day4name = "Sex";
+                    }
+                    else if (DateTime.Today.DayOfWeek == DayOfWeek.Thursday)
+                    {
+                        @:<b>Quinta</b>, <span id="@timeid">@DateTime.Now.ToString("HH:mm")</span>
+                        day4name = "Sab";
+                        day5name = "Dom";
+                        day6name = "Seg";
+                        day7name = "Ter";
+                        day2name = "Qui";
+                        day3name = "Sex";
+                    }
+                    else if (DateTime.Today.DayOfWeek == DayOfWeek.Friday)
+                    {
+                        @:<b>Sexta</b>, <span id="@timeid">@DateTime.Now.ToString("HH:mm")</span>
+                        day3name = "Sab";
+                        day4name = "Dom";
+                        day5name = "Seg";
+                        day6name = "Ter";
+                        day7name = "Qua";
+                        day2name = "Sex";
+                    }
+                    else if (DateTime.Today.DayOfWeek == DayOfWeek.Saturday)
+                    {
+                        @:<b>Sabado</b>, <span id="@timeid">@DateTime.Now.ToString("HH:mm")</span>
+                        day3name = "Dom";
+                        day4name = "Seg";
+                        day5name = "Ter";
+                        day6name = "Qua";
+                        day7name = "Qui";
+                        day2name = "Sab";
+                    }
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="weather-icon">
+                    <canvas height="84" width="84" id="@day1"></canvas>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="weather-text">
+                    <h2>@panel.LocationName <br><i id="@day1Sumary">Carrengando...</i></h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="weather-text pull-right">
+                <h3 class="degrees" id="@day1Degrees">--</h3>
+                <h4 class="" id="@day1Wind">--</h4>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row weather-days">
+
+
+
+            <div class="col-sm-2">
+                <div class="daily-weather">
+                    <h2 class="day">@day2name</h2>
+                    <h3 class="degrees" id="@day2Degrees">--</h3>
+                    <canvas id="@day2" width="32" height="32"></canvas>
+                    <h5 id="@day2Wind"></h5>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="daily-weather">
+                    <h2 class="day">@day3name</h2>
+                    <h3 class="degrees" id="@day3Degrees">--</h3>
+                    <canvas height="32" width="32" id="@day3"></canvas>
+                    <h5 id="@day3Wind"></h5>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="daily-weather">
+                    <h2 class="day">@day4name</h2>
+                    <h3 class="degrees" id="@day4Degrees">--</h3>
+                    <canvas height="32" width="32" id="@day4"></canvas>
+                    <h5 id="@day4Wind"></h5>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="daily-weather">
+                    <h2 class="day">@day5name</h2>
+                    <h3 class="degrees" id="@day5Degrees">--</h3>
+                    <canvas height="32" width="32" id="@day5"></canvas>
+                    <h5 id="@day5Wind"></h5>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="daily-weather">
+                    <h2 class="day">@day6name</h2>
+                    <h3 class="degrees" id="@day6Degrees">--</h3>
+                    <canvas height="32" width="32" id="@day6"></canvas>
+                    <h5 id="@day6Wind"></h5>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="daily-weather">
+                    <h2 class="day">@day7name</h2>
+                    <h3 class="degrees" id="@day7Degrees">--</h3>
+                    <canvas height="32" width="32" id="@day7"></canvas>
+                    <h5 id="@day7Wind"></h5>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+string weatherurl = "https://api.darksky.net/forecast/" + panel.APIKEY + "/" + panel.LocationLatitude + "," + panel.LocationLongitude + "?exclude=minutely,hourly,alerts,flags&lang=pt&units=si";
+
+    <script>
+
+        function updateTimeClock() {
+            var currentTime = new Date();
+            var currentHours = currentTime.getHours();
+            var currentMinutes = currentTime.getMinutes();
+            var currentTimeString = format_two_digits(currentHours) + ":" + format_two_digits(currentMinutes);
+            $("#@timeid").html(currentTimeString);
+        }
+
+        function format_two_digits(n) {
+            return n < 10 ? '0' + n : n;
+        }
+
+
+        function split_degree(n) {
+            var string = n + '';
+            return string.split(".")[0];
+        }
+
+
+        function GetWeatherIcon(n) {
+            return n;
+        }
+
+
+
+        $(document).ready(function () {
+            setInterval('updateTimeClock()', 5000);
+
+            $.ajax({
+                url: "@weatherurl",
+                data:{
+                    exclude: "minutely,hourly,alerts,flags",
+                    lang: "pt",
+                    units: "si"
+                },
+                dataType: "jsonp",
+                success: function (data) {
+                    callbackFunction(data);
+                }
+            });
+
+
+        });
+    </script>
+
+    <script>
+        var callbackFunction = function (data) {
+
+
+            $("#@day1Sumary").html(data.currently.summary);
+            $("#@day1Degrees").html(split_degree(data.currently.temperature));
+            $("#@day1Wind").html(split_degree(data.currently.windSpeed) + " km/h");
+
+
+
+            $("#@day2Degrees").html(split_degree(data.daily.data[0].temperatureMax));
+            $("#@day3Degrees").html(split_degree(data.daily.data[1].temperatureMax));
+            $("#@day4Degrees").html(split_degree(data.daily.data[2].temperatureMax));
+            $("#@day5Degrees").html(split_degree(data.daily.data[3].temperatureMax));
+            $("#@day6Degrees").html(split_degree(data.daily.data[4].temperatureMax));
+            $("#@day7Degrees").html(split_degree(data.daily.data[5].temperatureMax));
+
+
+            $("#@day2Wind").html(split_degree(data.daily.data[0].windSpeed) + ' <i>km/h</i>');
+            $("#@day3Wind").html(split_degree(data.daily.data[1].windSpeed) + ' <i>km/h</i>');
+            $("#@day4Wind").html(split_degree(data.daily.data[2].windSpeed) + ' <i>km/h</i>');
+            $("#@day5Wind").html(split_degree(data.daily.data[3].windSpeed) + ' <i>km/h</i>');
+            $("#@day6Wind").html(split_degree(data.daily.data[4].windSpeed) + ' <i>km/h</i>');
+            $("#@day7Wind").html(split_degree(data.daily.data[5].windSpeed) + ' <i>km/h</i>');
+
+
+
+
+
+            var icons = new Skycons({
+                "color": "#73879C"
+            });
+
+            icons.set("@day1", GetWeatherIcon(data.currently.icon))
+            icons.set("@day2", GetWeatherIcon(data.daily.data[0].icon))
+            icons.set("@day3", GetWeatherIcon(data.daily.data[1].icon))
+            icons.set("@day4", GetWeatherIcon(data.daily.data[2].icon))
+            icons.set("@day5", GetWeatherIcon(data.daily.data[3].icon))
+            icons.set("@day6", GetWeatherIcon(data.daily.data[4].icon))
+            icons.set("@day7", GetWeatherIcon(data.daily.data[5].icon))
+
+
+            icons.play();
+        };
+    </script>
+
+
+
+
+
+
+}

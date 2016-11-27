@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+
+    var titles = new List<Veloz.Models.Widgets.Tiles>();
+    titles.Add(new Veloz.Models.Widgets.Tiles("Particulates Ativos", fa_icons.user, 2500, 2800));
+    titles.Add(new Veloz.Models.Widgets.Tiles("Vendidos Hoje", fa_icons.user, 123.5, 114));
+    titles.Add(new Veloz.Models.Widgets.Tiles("Vendidos em 7 dias", fa_icons.user, 2300, 2000));
+    titles.Add(new Veloz.Models.Widgets.Tiles("Vendidos em 30 dias", fa_icons.user, 4563, 4560));
+    titles.Add(new Veloz.Models.Widgets.Tiles("Tempo médio", fa_icons.clock_o, 200, 1000));
+    titles.Add(new Veloz.Models.Widgets.Tiles("Valor acumulado", fa_icons.money, 300, 254));
+
+    var vendas = new Veloz.Models.Widgets.Chart.HorizontalProgressBarChart();
+    vendas.FixedHeight = true;
+    vendas.Size =  WidgetWidth.OneColumn;
+    vendas.Title = "Vendas";
+    vendas.SubTitle = "Vendas no último período";
+    vendas.AddItem("Camila", 80, 100);
+    vendas.AddItem("Vanisa", 70, 100);
+    vendas.AddItem("Ana paula", 40, 100);
+    vendas.AddItem("Junior", 30, 100);
+    vendas.AddItem("Alfredo", 0, 100);
+
+
+
+    var navegadores = new Veloz.Models.Widgets.Chart.DoughnutChart();
+    navegadores.FixedHeight = true;
+    navegadores.Size = WidgetWidth.OneColumn;
+    navegadores.Title = "Navegadores";
+    navegadores.SubTitle = "Top 5";
+    navegadores.AddItem("IOS", 30);
+    navegadores.AddItem("Android", 10);
+    navegadores.AddItem("Blackberry", 20);
+    navegadores.AddItem("Symbian", 15);
+    navegadores.AddItem("Outros", 30);
+
+
+    var vendedores = new Veloz.Models.Widgets.Chart.PieChart();
+    vendedores.FixedHeight = true;
+    vendedores.Size = WidgetWidth.OneColumn;
+    vendedores.Title = "vendedores";
+    vendedores.SubTitle = "Top 5";
+    vendedores.AddItem("Camila", 30);
+    vendedores.AddItem("Vanisa", 10);
+    vendedores.AddItem("Junior", 20);
+    vendedores.AddItem("Vinicius", 15);
+    vendedores.AddItem("José", 30);
+
+
+    var hitorico = new Veloz.Models.Widgets.Activitie();
+    hitorico.Size = WidgetWidth.OneColumn;
+    hitorico.Title = "Atividades recentes";
+    hitorico.AddItem(DateTime.Now, "Camila", "Solicitação de ligação", "Ligar para cliente as 10 horas de segunda feira, pois cliente informou que gostaria de verificar os planos odontologicos");
+    hitorico.AddItem(DateTime.Now, "Jane Smith", "Who Needs Sundance When You’ve Got Crowdfunding?", "Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and");
+    hitorico.AddItem(DateTime.Now, "Jane Smith", "Who Needs Sundance When You’ve Got Crowdfunding?", "Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and");
+    hitorico.AddItem(DateTime.Now, "Jane Smith", "Who Needs Sundance When You’ve Got Crowdfunding?", "Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and");
+    hitorico.AddItem(DateTime.Now, "Jane Smith", "Who Needs Sundance When You’ve Got Crowdfunding?", "Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and");
+    hitorico.AddItem(DateTime.Now, "Jane Smith", "Who Needs Sundance When You’ve Got Crowdfunding?", "Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and");
+    hitorico.AddItem(DateTime.Now, "Jane Smith", "Who Needs Sundance When You’ve Got Crowdfunding?", "Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and");
+
+    var tarefas = new Veloz.Models.Widgets.Tasks();
+    tarefas.Size = WidgetWidth.OneColumn;
+    tarefas.Title = "Tarefas";
+    tarefas.AddItem("Ligar para 1001");
+    tarefas.AddItem("Verifircar sinistralidade da 789");
+    tarefas.AddItem("Informar quantidade de beneficiários da 1006");
+    tarefas.AddItem("Verificar quantidade de importações realizadas dese outubro de 2006 e também verificar importações da agemed");
+    tarefas.AddItem("Habilitar vendas da renata");
+    tarefas.AddItem("Verificar sinistralidade da 118");
+    tarefas.AddItem("Ligar para CEEE");
+    tarefas.AddItem("Estabelecer contato com rh do Sebrae");
+
+
+    var tempo = new Veloz.Models.Widgets.Weather();
+    tempo.Size = WidgetWidth.OneColumn;
+    tempo.Title = "Previsão do tempo";
+    tempo.LocationName = "Porto Alegre";
+    tempo.APIKEY = "a17ee96f769ffb9cb5184cde5d5d6a18";
+    tempo.LocationLatitude = "-30.0277";
+    tempo.LocationLongitude = "-51.2287";
+
+}
+
+
+<!-- top tiles -->
+
+@Widgets.Tile.Tiles(titles)
+<!-- /top tiles -->
+
+
+<div class="row">
+
+    @Widget.Create(vendas)
+    @Widget.Create(navegadores)
+    @Widget.Create(vendedores)
+</div>
+
+<div class="row">
+    @Widget.Create(hitorico)
+    @Widget.Create(tarefas)
+    @Widget.Create(tempo)
+</div>

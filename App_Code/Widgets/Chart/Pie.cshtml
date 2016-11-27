@@ -1,0 +1,87 @@
+﻿@helper Create(Veloz.Models.IWidgetContent piepanel)
+{
+var panel = (Veloz.Models.IWidgetChart)piepanel;
+var canvasid = Guid.NewGuid();
+    <div class="x_content">
+        <table class="" style="width:100%">
+            <tr>
+                <th style="width:37%;">
+                    <p>@panel.SubTitle</p>
+                </th>
+                <th>
+                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                        <p class="">@panel.ItemsTitle</p>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                        <p class="">@panel.ValuesTitle</p>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <canvas id="@canvasid" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                </td>
+                <td>
+                    <table class="tile_info">
+                        @foreach (var item in panel.Items)
+                        {
+                            <tr>
+                                <td>
+                                    <p><i class="fa fa-square @item.DefaultColor"></i>@item.Name </p>
+                                </td>
+                                <td>@item.PercentValue</td>
+                            </tr>
+                        }
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+
+        <script>
+            $(document).ready(function () {
+                var options = {
+                    legend: false,
+                    responsive: false
+                };
+
+                var MyLabels = [];
+                var MyColors = [];
+                var MyOverColors = [];
+                var color;
+                var red;
+                var green;
+                var blue;
+                var rgb;
+                @foreach (var item in panel.Items)
+                {
+                    @:MyLabels.push("@item.Name");
+                    @:color = $(".@item.DefaultColor").css("color");
+                    @:MyColors.push(color);
+                    @:rgb = color.replace(/^(rgb|rgba)\(/, '').replace(/\)$/, '').replace(/\s/g, '').split(',');
+                    @:red = parseInt(rgb[0]) + 30;
+                    @:green = parseInt(rgb[1]) + 30;
+                    @:blue = parseInt(rgb[2]) +  30;
+                    @:MyOverColors.push("rgba(" + red + ", " + green + ", " + blue + ", 66)");
+
+                }
+
+                new Chart(document.getElementById("@canvasid"), {
+                    type: 'pie',
+                    tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+                    data: {
+                        labels: MyLabels
+                        ,
+                        datasets: [{
+                            data: [15, 20, 30, 10, 30],
+                            backgroundColor: MyColors,
+                            hoverBackgroundColor: MyOverColors
+                        }]
+                    },
+                    options: options
+                });
+            });
+        </script>
+
+    </div>
+}

@@ -1,0 +1,31 @@
+﻿@helper Tiles(List<Veloz.Models.Widgets.Tiles> tiles) {
+    <div class="row tile_count">
+@foreach (var item in tiles)
+{
+    double percentual = (item.ValorPeriodoAtual - item.ValorPeriodoAnterior) / item.ValorPeriodoAnterior * 100;
+    string cor = item.DefaultColor.ToString();
+    string corPercentual = "green";
+    string ordenacao = "asc";
+    if (percentual < 0)
+    {
+        percentual = percentual * -1;
+        corPercentual = "red";
+        ordenacao = "desc";
+    }
+    percentual = (int)percentual;
+
+
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-@item.Icon.ToString().Replace("_","-")"></i> @item.Title</span>
+        <div class='count @cor'> @item.ValorPeriodoAtual</div>
+        <span class='count_bottom'>
+            <i class='@corPercentual'>
+                <i class='fa fa-sort-@ordenacao'></i>
+                @percentual% 
+            </i> 
+            @item.TituloPeriodo
+        </span>
+    </div>
+}
+    </div>
+}   
